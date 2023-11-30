@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<!-- -------------------------------------------------------------------------------
+
+If you fork this app, you will need to define a few config variables for your fork.
+
+You can do this in the config.js file.
+
+You will need:
+- APP_ROOT:
+  - This is the public URL for your app root path.
+  - Format:  https://APPNAME--REPLID.repl.co
+  - Example: https://SPADemo--msfapi.repl.co
+- CLIENT_ID:
+  - The Client ID for your app.
+  - You get this when you register at https://hub.marvelstrikeforce.com/developer
+
+In order to register, you will need to provide:
+- Full Domain Name:
+  - Must match the domain part of your APP_ROOT.
+- Path for OAuth2 Redirect:
+  - /redirect.html
+- Path for Your Privacy Policy
+  - /privacy.html
+
+ ------------------------------------------------------------------------------- -->
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MSF API Single-Page App Demo</title>
+    <script src="config.js"></script>
+    <script type="text/javascript">
+      function onLoad() {
+        document.getElementById('applink').setAttribute('href', APP_HOME);
+      }
+    </script>
+    <style>
+      code { color: darkgreen; font-weight: bold; white-space: nowrap; }
+    </style>
+  </head>
+  <body onLoad='onLoad();'>
+    <div>
+      <h1>Welcome to the MSF API Single-Page App Demo</h1>
+      <h2>Level 1: Try It</h2>
+      <p>Open the <a id="applink" target="_blank" rel="noopener noreferrer">Single-Page App</a> demo.</p>
+      <p>Things to try:</p>
+      <ol>
+        <li>Login</li>
+        <li>Fetch TCP</li>
+        <li>Clear Cached TCP</li>
+        <li>Expire the Access Token</li>
+        <li>Try to Fetch TCP again and notice the Access Token and Refresh Token get updated along with the TCP</li>
+        <li>Close the demo tab and then reopen it using the link above and notice you're still logged in.</li>
+        <li>Logout, then repeat steps 1-5 without granting "Persist Access Until Revoked" in the Login step. Notice that after expiring the Access Token, it is not possible to Refresh the tokens in step 5.</li>
+        <li>Logout, then repeat steps 1-2 with granting only Activity (not Profile) access. Notice you get a 403 error in step 2.</li>
+        <li>Logout, then log in with full permissions in two browsers.</li>
+        <li>In the second browser click Logout All. Notice that the first browser can no longer refresh the access token. (And, if it already had one, notice that it stops working to fetch the TCP after 5 minutes.)</li>
+      </ol>
+      <h2>Level 2: Fork It</h2>
+      <p>You can fork this demo and edit it yourself, using the Fork button on the top right of the page.</p>
+      <p>After you fork it, start by looking only at the files in the root folder, starting with <code>index.html</code>.</p>
+      <p>You can ignore everything in the <code>AppAuth-JS</code> folder. In fact, if you don't want to customize the SDK, you can just delete that whole folder.</p>
+      <h2>Level 3: Customizing the SDK</h2>
+      <p>If you need to customize the SDK (or port it to another language), you can start by looking at <code>AppAuth-JS/src/app/index.ts</code>.</p>
+      <p>If you make any changes, you'll need to recompile <code>bundle.js</code>. To do so, use the Shell and run the following commands:</p>
+      <ol>
+        <li><code>cd AppAuth-JS</code></li>
+        <li><code>npm install</code> (select <code>nodejs-16_x</code> if prompted)</li>
+        <!-- no longer needed: <li><code>npm run-script build-app</code></li> -->
+        <li>Drag-drop <code>AppAuth-JS/built/app/bundle.js</code> to your app root folder. (Note: due to replit quirks, don't try to do this with shell commands -- it won't pick it up.)</li>
+      </ol>
+    </div>
+  </body>
+</html>
